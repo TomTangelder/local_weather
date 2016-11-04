@@ -1,50 +1,48 @@
 var weather = {}
 var myLocation = {}
+var weather_URL = "https://api.wunderground.com/api/9e34a9a814ceadcf/conditions/q/"
 
-var getWeather = function(json) {
+function getLocalWeather(func){
+	console.log("Hi I'm in getLocalWeather")
+	if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (pos){
+        	func(pos.coords);
+        });
+    } else {
+        console.log("Geolocation not supported")
+        //todo log a message on the website saying unable to determine location
+    }
+};
+
+var updateWeather = function(json) {
+	console.log("Updating the Weather")
 	 weather = {
 	 	'temperature_f': json.current_observation.temp_f,
 	 	'temperature_c': json.current_observation.temp_c
 	 };
 	console.log(json)
 	console.log(weather)
+	updateView()	
+	//$('.weather').html(weather.temperature_f);
 };
 
-var getLocation = function(json) {
-	myLocation = {
-		'city': json.city,
-		'region': json.region_code,
-		'zip_code': json.zip_code,
-		'latitude': json.latitude,
-		'longitude': json.longitude
-	};	
-	console.log(json)
-	console.log(myLocation)
-};
-
-function updatePage(){
-	$('.city').html(myLocation.city);
+function updateView(){
 	$('.weather').html(weather.temperature_f);
-};
+}
 
-var weather_URL = "https://api.wunderground.com/api/9e34a9a814ceadcf/conditions/q/"
-var location_URL = "https://freegeoip.net/json/";
+function getWeatherData(position){
+	console.log("And here I am in getWeatherData")
+	console.log("My Latitude is:" + position.latitude)
+	console.log("My longitude is:" + position.longitude)
+	myLocation = {
+		'latitude': position.latitude,
+		'longitude': position.longitude
+	};
+	weather_URL += position.latitude + "," + position.longitude + ".json"
+	console.log("Weather URL: " + weather_URL)	
+	$.getJSON(weather_URL, updateWeather)	
+}
 
-$(document).ready(function (){
-	$.ajax({
-		url: location_URL,
-		dataType: 'json',
-		async: false,
-		success: getLocation
-	});
-	weather_URL += myLocation.latitude + "," + myLocation.longitude + ".json"
-	$.ajax({
-		url: weather_URL,
-		dataType: 'json',
-		async: false,
-		success: getWeather
-	});
-	//$.getJSON(weather_URL, getWeather);
-
-	updatePage();
+$(document).ready(function(){
+	getLocalWeather(getWeatherData)
 });
