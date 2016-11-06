@@ -1,0 +1,15 @@
+.container {
+  position: relative;
+  margin: 5% auto;
+  text-align: center;
+  width: 100%;
+}
+
+body {
+  background-image:
+    radial-gradient(
+      circle at top right,
+      1D5F74,
+      #9BCFD2
+    );
+}
