@@ -4,11 +4,13 @@ var weather_URL = "https://api.wunderground.com/api/9e34a9a814ceadcf/conditions/
 
 function getLocalWeather(func){
 	console.log("Hi I'm in getLocalWeather")
+	alert("In Get Local Weather")
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (pos){
         	func(pos.coords);
         });
     } else {
+    	alert("geolocation not supported")
         console.log("Geolocation not supported")
         //todo log a message on the website saying unable to determine location
     }

@@ -5,6 +5,24 @@
   width: 100%;
 }
 
+.info_panel {
+	background-color: white;
+	margin-left: 20%;
+	margin-right: 20%;
+	border-radius: 20px;
+	box-shadow: 10px;
+	-webkit-box-shadow:0 0 8px 0 black;
+}
+
+.wulogo {
+	margin-bottom: 10px;
+}
+
+.info_element {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 body {
   background-image:
     radial-gradient(
