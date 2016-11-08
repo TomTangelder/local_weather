@@ -22,7 +22,7 @@ var updateWeather = function(json) {
 	 	'feelslike_f': json.current_observation.feelslike_f,
 	 	'feelslike_c': json.current_observation.feelslike_c,
 	 	'weather': json.current_observation.weather,
-	 	'weather_icon_url': json.current_observation.icon_url,
+	 	'weather_icon_url': json.current_observation.icon_url.replace("http", "https"),
 	 	'precip_today_in': json.current_observation.precip_today_in, 
 	 	'wind_mph': json.current_observation.wind_mph,
 	 	'city': json.current_observation.display_location.city,
