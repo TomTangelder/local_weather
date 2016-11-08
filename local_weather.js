@@ -46,6 +46,7 @@ function updateView(){
 }
 
 function getWeatherData(position){
+	alert("in get weather data")
 	console.log("And here I am in getWeatherData")
 	console.log("My Latitude is:" + position.latitude)
 	console.log("My longitude is:" + position.longitude)
