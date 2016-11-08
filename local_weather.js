@@ -4,13 +4,11 @@ var weather_URL = "https://api.wunderground.com/api/9e34a9a814ceadcf/conditions/
 
 function getLocalWeather(func){
 	console.log("Hi I'm in getLocalWeather")
-	alert("In Get Local Weather")
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (pos){
         	func(pos.coords);
         });
     } else {
-    	alert("geolocation not supported")
         console.log("Geolocation not supported")
         //todo log a message on the website saying unable to determine location
     }
@@ -39,14 +37,13 @@ var updateWeather = function(json) {
 
 function updateView(){
 	$('.weather').html(weather_info.temperature_f + " &#x2109");
-	//$('.icon').html("<img src=" + weather_info.weather_icon_url + ">");
+	$('.icon').html("<img src=" + weather_info.weather_icon_url + ">");
 	$('.location').html(weather_info.city + ", " + weather_info.state);
 	$('.precipitation').html("Precipitation: " + weather_info.precip_today_in + " in");
 	$('.wind').html("Wind: " + weather_info.wind_mph + " mph");
 }
 
 function getWeatherData(position){
-	alert("in get weather data")
 	console.log("And here I am in getWeatherData")
 	console.log("My Latitude is:" + position.latitude)
 	console.log("My longitude is:" + position.longitude)
