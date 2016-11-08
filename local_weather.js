@@ -39,7 +39,7 @@ var updateWeather = function(json) {
 
 function updateView(){
 	$('.weather').html(weather_info.temperature_f + " &#x2109");
-	$('.icon').html("<img src=" + weather_info.weather_icon_url + ">");
+	//$('.icon').html("<img src=" + weather_info.weather_icon_url + ">");
 	$('.location').html(weather_info.city + ", " + weather_info.state);
 	$('.precipitation').html("Precipitation: " + weather_info.precip_today_in + " in");
 	$('.wind').html("Wind: " + weather_info.wind_mph + " mph");
