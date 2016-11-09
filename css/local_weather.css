@@ -23,11 +23,7 @@
 	margin-bottom: 10px;
 }
 
-body {
-  background-image:
-    radial-gradient(
-      circle at top right,
-      1D5F74,
-      #9BCFD2
-    );
+.gradient {
+	background-color: #9BCFD2;
+	background-image: radial-gradient(circle at top right, #1D5F74, #9BCFD2);
 }
