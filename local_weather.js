@@ -1,6 +1,7 @@
 var weather_info = {}
 var myLocation = {}
 var weather_URL = "https://api.wunderground.com/api/9e34a9a814ceadcf/conditions/q/"
+var fahrenheit = true
 
 function getLocalWeather(func){
 	console.log("Hi I'm in getLocalWeather")
@@ -54,6 +55,17 @@ function getWeatherData(position){
 	weather_URL += position.latitude + "," + position.longitude + ".json"
 	console.log("Weather URL: " + weather_URL)	
 	$.getJSON(weather_URL, updateWeather)	
+}
+
+function toggleTemperature(){
+	if (fahrenheit == true){
+		$('.weather').html(weather_info.temperature_c + " &#x2103");
+		fahrenheit = false
+	}
+	else {
+		$('.weather').html(weather_info.temperature_f + " &#x2109");
+		fahrenheit = true
+	}
 }
 
 $(document).ready(function(){
